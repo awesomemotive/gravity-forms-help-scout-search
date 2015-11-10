@@ -39,18 +39,30 @@ class PW_GF_HS_Search {
 				var paging    = $('.gform_body .gform_page_footer');
 				var hidden    = $('.gform_body .gfield.helpscout-docs').next().find('input');
 				var field     = wrap.find('input[type="text"]');
-				var searching = false;
+				var searching = false, allowed = false;
 
 				paging.hide();
 
 				$('body').on('click', '.gform_body #need-help-contact', function(e) {
 					e.preventDefault();
+					allowed = true;
 					paging.show();
 				});
 
 				wrap.append( '<div class="docs-search-wrap"></div>' );
 				field.attr( 'autocomplete', 'off' );
-				field.keyup(function() {
+
+				paging.find('input[type="submit"]').on('click', function(e) {
+
+					if( ! allowed ) {
+
+						return false;
+					}
+	
+				});
+
+				field.keyup(function(e) {
+
 					query = $(this).val();
 
 					if( query.length < 4 ) {
