@@ -91,55 +91,53 @@ class PW_GF_HS_Search {
 								});
 							}
 						}).done(function() {
-							wrap.find('.docs-search-wrap').html( html );
-							searching = false;
+														
+							// FAQs
+							$.ajax({
+								url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=548f192ae4b07d03cb25088e&query=' + query,
+								headers: {
+									'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
+								},
+								xhrFields: {
+									withCredentials: false
+								},
+								beforeSend: function() {
+									searching = true;
+								},
+								success: function(results) {
+									$.each( results.articles.items, function( key, article ) {
+										html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
+									});
+								}
+
+							}).done(function() {
+								
+								// Extensions
+								$.ajax({
+									url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=5488f10de4b0dc8d3cacdf29&query=' + query,
+									headers: {
+										'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
+									},
+									xhrFields: {
+										withCredentials: false
+									},
+									beforeSend: function() {
+										searching = true;
+									},
+									success: function(results) {
+										$.each( results.articles.items, function( key, article ) {
+											html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
+										});
+									}
+								}).done(function() {
+									html = html + '</ul>'
+									html = html + '<p class="show-contact-form-wrap"><a href="#" id="need-help-contact">Still need help?</a></p>';
+									wrap.find('.docs-search-wrap').html( html );
+									searching = false;
+								});
+							});
 						});
 
-						// FAQs
-						$.ajax({
-							url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=548f192ae4b07d03cb25088e&query=' + query,
-							headers: {
-								'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
-							},
-							xhrFields: {
-								withCredentials: false
-							},
-							beforeSend: function() {
-								searching = true;
-							},
-							success: function(results) {
-								$.each( results.articles.items, function( key, article ) {
-									html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
-								});
-							}
-						}).done(function() {
-							wrap.find('.docs-search-wrap').html( html );
-							searching = false;
-						});
-
-						// Extensions
-						$.ajax({
-							url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=5488f10de4b0dc8d3cacdf29&query=' + query,
-							headers: {
-								'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
-							},
-							xhrFields: {
-								withCredentials: false
-							},
-							beforeSend: function() {
-								searching = true;
-							},
-							success: function(results) {
-								$.each( results.articles.items, function( key, article ) {
-									html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
-								});
-							}
-						}).done(function() {
-							html = html + '</ul>'
-							html = html + '<p class="show-contact-form-wrap"><a href="#" id="need-help-contact">Still need help?</a></p>';
-							wrap.find('.docs-search-wrap').html( html );
-							searching = false;
-						});
 
 					}
 
