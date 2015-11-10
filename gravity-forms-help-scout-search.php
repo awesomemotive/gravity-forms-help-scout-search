@@ -66,6 +66,9 @@ class PW_GF_HS_Search {
 							headers: {
 								'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
 							},
+							xhrFields: {
+								withCredentials: false
+							},
 							beforeSend: function() {
 								searching = true;
 							},
