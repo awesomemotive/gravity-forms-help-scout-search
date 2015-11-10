@@ -74,7 +74,7 @@ class PW_GF_HS_Search {
 					if( ! searching ) {
 
 						$.ajax({
-							url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=548f192ae4b07d03cb25088e&query=' + query,
+							url: 'https://docsapi.helpscout.net/v1/search/articles?query=' + query,
 							headers: {
 								'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
 							},
