@@ -30,7 +30,6 @@ class PW_GF_HS_Search {
 			return;
 		}
 
-		$settings = get_option( 'gravityformsaddon_gravityformshelpscout_settings' );
 ?>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -96,7 +95,7 @@ class PW_GF_HS_Search {
 							$.ajax({
 								url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=548f192ae4b07d03cb25088e&query=' + query,
 								headers: {
-									'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
+									'Authorization': 'Basic <?php echo base64_encode( HELPSCOUT_DOCS_API_KEY . ":X" ); ?>'
 								},
 								xhrFields: {
 									withCredentials: false
