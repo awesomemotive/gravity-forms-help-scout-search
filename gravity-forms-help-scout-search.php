@@ -76,7 +76,7 @@ class PW_GF_HS_Search {
 						$.ajax({
 							url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=548f1914e4b034fd486247ce&query=' + query,
 							headers: {
-								'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
+								'Authorization': 'Basic <?php echo base64_encode( HELPSCOUT_DOCS_API_KEY . ":X" ); ?>'
 							},
 							xhrFields: {
 								withCredentials: false
@@ -115,7 +115,7 @@ class PW_GF_HS_Search {
 								$.ajax({
 									url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=5488f10de4b0dc8d3cacdf29&query=' + query,
 									headers: {
-										'Authorization': 'Basic <?php echo base64_encode( $settings["api_key"] . ":X" ); ?>'
+										'Authorization': 'Basic <?php echo base64_encode( HELPSCOUT_DOCS_API_KEY . ":X" ); ?>'
 									},
 									xhrFields: {
 										withCredentials: false
