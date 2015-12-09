@@ -130,8 +130,9 @@ class PW_GF_HS_Search {
 									}
 								}).done(function() {
 									html = html + '</ul>'
-									html = html + '<p class="show-contact-form-wrap"><a href="#" id="need-help-contact">Still need help?</a></p>';
+									//html = html + '<p class="show-contact-form-wrap"><a href="#" id="need-help-contact">Still need help?</a></p>';
 									wrap.find('.docs-search-wrap').html( html );
+									paging.show();
 									searching = false;
 								});
 							});
