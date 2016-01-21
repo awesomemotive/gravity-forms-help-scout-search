@@ -72,6 +72,8 @@ class PW_GF_HS_Search {
 
 					if( ! searching ) {
 
+						var count = 0;
+
 						// Getting Started
 						$.ajax({
 							url: 'https://docsapi.helpscout.net/v1/search/articles?collectionId=548f1914e4b034fd486247ce&query=' + query,
@@ -85,6 +87,9 @@ class PW_GF_HS_Search {
 								searching = true;
 							},
 							success: function(results) {
+
+								count += results.articles.items.length;
+
 								$.each( results.articles.items, function( key, article ) {
 									html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
 								});
@@ -104,6 +109,9 @@ class PW_GF_HS_Search {
 									searching = true;
 								},
 								success: function(results) {
+
+									count += results.articles.items.length;
+
 									$.each( results.articles.items, function( key, article ) {
 										html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
 									});
@@ -124,6 +132,9 @@ class PW_GF_HS_Search {
 										searching = true;
 									},
 									success: function(results) {
+
+										count += results.articles.items.length;
+
 										$.each( results.articles.items, function( key, article ) {
 											html = html + '<li class="article"><a href="' + article.url + '" title="' + article.preview + '">' + article.name + '</a><li>';
 										});
@@ -131,6 +142,7 @@ class PW_GF_HS_Search {
 								}).done(function() {
 									html = html + '</ul>'
 									//html = html + '<p class="show-contact-form-wrap"><a href="#" id="need-help-contact">Still need help?</a></p>';
+									html = '<span class="results-found">' + count + ' results found . . . </span>' + html;
 									wrap.find('.docs-search-wrap').html( html );
 									paging.show();
 									searching = false;
