@@ -156,12 +156,11 @@ jQuery( document ).ready(function($) {
 			    found_text = GF_HS_Settings.text.no_results_found;
 			    css_class += ' message-no_results';
 		    } else {
-			    found_text = found_text.replace( '{count}', count );
 			    found_text = ( count === 1 ) ? GF_HS_Settings.text.result_found : GF_HS_Settings.text.results_found;
 			    css_class += ' message-results';
 		    }
 
-		    return GF_HS_Settings.template.results_found.replace( '{css_class}', css_class ).replace( '{text}', found_text );
+		    return GF_HS_Settings.template.results_found.replace( '{css_class}', css_class ).replace( '{text}', found_text ).replace( '{count}', count );
 	    },
 
 	    /**
