@@ -16,13 +16,14 @@ jQuery( document ).ready(function($) {
 	    query: '',
 
 	    /** Search field container */
-	    wrap: $( '.gform_body .gfield.helpscout-docs' ),
+	    wrap: $( '.gform_wrapper .gfield.helpscout-docs' ),
+
 	    /** Gravity Forms submit button */
 	    footer: $( '.gform_wrapper .gform_footer' ),
 
 	    submit: $( '.gform_button[type="submit"]', '.gform_wrapper .gform_page_footer' ),
 
-	    field: $( '.gform_body .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
+	    field: $( '.gform_wrapper .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
 
 	    results: {},
 
