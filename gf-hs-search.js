@@ -39,14 +39,14 @@ jQuery( document ).ready(function($) {
 
 		    HS_Search.field
 			    .attr( 'autocomplete', 'off' )
-			    .on( 'keydown', HS_Search.on_keyup );
+			    .on( 'keydown keyup change', HS_Search.search_changed );
 	    },
 
 	    /**
 	     * Perform search on keyup
 	     * @param e
 	     */
-	    on_keyup: function ( e ) {
+	    search_changed: function ( e ) {
 
 		    var ignored_key_codes = [ 9, 16, 17, 18, 20, 32, 33, 34, 37, 38, 91, 93 ];
 
