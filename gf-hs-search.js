@@ -47,19 +47,19 @@ jQuery( document ).ready(function($) {
 	     */
 	    on_keyup: function ( e ) {
 
-		    HS_Search.query = $( this ).val();
-
-		    // Deleted, empty search box
-		    if ( HS_Search.query.length < HS_Search.minLength || ( ( 8 === e.which || 46 === e.which ) && HS_Search.query.length === 0 ) ) {
-			    HS_Search.set_results( {} );
-			    return;
-		    }
-
 		    var ignored_key_codes = [ 9, 16, 17, 18, 20, 32, 33, 34, 37, 38, 91, 93 ];
 
 		    if ( ignored_key_codes.indexOf( e.which ) > -1 ) {
 			    HS_Search.log( 'Ignored key press', e.which );
+			    return;
+		    }
+
+		    HS_Search.query = $( this ).val();
+
+		    // Deleted, empty search box
+		    if ( HS_Search.query.length < GF_HS_Settings.minLength || ( 8 === e.which || 46 === e.which ) && HS_Search.query.length === 0 ) {
 			    HS_Search.cancelled = true; // Prevent new results from being shown
+			    HS_Search.set_results( {} );
 			    return;
 		    }
 
