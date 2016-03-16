@@ -16,9 +16,10 @@ jQuery( document ).ready(function($) {
 
 	    /** Search field container */
 	    wrap: $( '.gform_body .gfield.helpscout-docs' ),
+	    /** Gravity Forms submit button */
+	    footer: $( '.gform_wrapper .gform_footer' ),
 
-	    /** Gravity Forms footer DOM */
-	    paging: $( '.gform_body .gform_page_footer' ),
+	    submit: $( '.gform_button[type="submit"]', '.gform_wrapper .gform_page_footer' ),
 
 	    field: $( '.gform_body .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
 
@@ -26,21 +27,10 @@ jQuery( document ).ready(function($) {
 
 	    init: function () {
 
-		    HS_Search.paging
-			    .hide()
-			    .find( 'input[type="submit"]' )
-			    .on( 'click', function ( e ) {
 
-				    if ( !HS_Search.allowed ) {
-					    return false;
-				    }
-			    } );
-
-		    $( 'body' ).on( 'click', '.gform_body #need-help-contact', function ( e ) {
-			    e.preventDefault();
-			    HS_Search.allowed = true;
-			    HS_Search.show();
-		    } );
+		    if ( GF_HS_Settings.hideSubmit ) {
+		        HS_Search.footer.hide();
+		    }
 
 		    HS_Search.wrap
 			    .append( '<div class="' + GF_HS_Settings.template.wrap_class + '" />' );
@@ -183,7 +173,9 @@ jQuery( document ).ready(function($) {
 
 		    HS_Search.wrap.find( '.docs-search-wrap' ).html( HS_Search.get_results_html() );
 
-		    HS_Search.paging.show();
+		    if ( GF_HS_Settings.hideSubmit ) {
+			    HS_Search.footer.show();
+		    }
 	    },
 
 	    /**
