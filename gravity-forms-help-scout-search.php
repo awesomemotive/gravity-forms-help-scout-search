@@ -94,13 +94,15 @@ class PW_GF_HS_Search {
 		$script_settings = apply_filters( 'gf_helpscout_docs_script_settings', array(
 			'debug' => false, // Print debug logs or not
 			'minLength' => 3, // Minimum number of characters required to trigger search
-			'limit' => 15, // Max limit for # of results to show
-			'result_found' => __('{count} result found&hellip;'),
-			'results_found' => __('{count} results found&hellip;'),
-			'no_results_found' => __('No results found&hellip;'),
-			'enter_search' => __('Please enter a search term.'),
-			'not_long_enough' => __('Search must be at least {minLength} characters.'),
-			'error' => __('There was an error fetching search results.'),
+			'limit' => 5, // Max limit for # of results to show
+			'text' => array(
+				'result_found' => __('{count} result found&hellip;'),
+				'results_found' => __('{count} results found&hellip;'),
+				'no_results_found' => __('No results found&hellip;'),
+				'enter_search' => __('Please enter a search term.'),
+				'not_long_enough' => __('Search must be at least {minLength} characters.'),
+				'error' => __('There was an error fetching search results.'),
+			),
 			'template' => array(
 				'wrap_class' => 'docs-search-wrap',
 				'before' => '<ul class="docs-search-results">',

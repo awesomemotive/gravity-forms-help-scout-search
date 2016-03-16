@@ -154,17 +154,17 @@ jQuery( document ).ready(function($) {
 		    var css_class = 'results-found';
 
 		    if ( HS_Search.query.length === 0 ) {
-			    found_text = GF_HS_Settings.enter_search;
+			    found_text = GF_HS_Settings.text.enter_search;
 			    css_class += ' message-enter_search';
 		    } else if ( HS_Search.query.length < HS_Search.minLength ) {
-			    found_text = GF_HS_Settings.not_long_enough.replace( '{minLength}', HS_Search.minLength );
+			    found_text = GF_HS_Settings.text.not_long_enough.replace( '{minLength}', HS_Search.minLength );
 			    css_class += ' message-minlength';
 		    } else if ( 0 === count ) {
-			    found_text = GF_HS_Settings.no_results_found
+			    found_text = GF_HS_Settings.text.no_results_found;
 			    css_class += ' message-no_results';
 		    } else {
-			    found_text = ( count === 1 ) ? GF_HS_Settings.result_found : GF_HS_Settings.results_found;
 			    found_text = found_text.replace( '{count}', count );
+			    found_text = ( count === 1 ) ? GF_HS_Settings.text.result_found : GF_HS_Settings.text.results_found;
 			    css_class += ' message-results';
 		    }
 
