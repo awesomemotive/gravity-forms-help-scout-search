@@ -64,6 +64,7 @@ jQuery( document ).ready(function($) {
 			    return;
 		    }
 
+
 		    HS_Search.maybe_perform_search();
 	    },
 
@@ -71,6 +72,7 @@ jQuery( document ).ready(function($) {
 	     * Check whether a search is being performed. If not, start one.
 	     */
 	    maybe_perform_search: function () {
+
 		    if ( !HS_Search.searching ) {
 			    // Reset the results array
 			    HS_Search.perform_search();
@@ -83,7 +85,7 @@ jQuery( document ).ready(function($) {
 	    perform_search: function () {
 
 		    // Reset results
-		    HS_Search.results = [];
+		    HS_Search.results = {};
 		    HS_Search.cancelled = false;
 
 		    HS_Search.fetch_results();
@@ -103,8 +105,7 @@ jQuery( document ).ready(function($) {
 
 	    get_results_html: function () {
 
-		    var output = '';
-		    var count = 0;
+		    var output = '', count = 0;
 
 		    if ( 'undefined' !== typeof( HS_Search.results.articles ) && HS_Search.results.articles.items.length ) {
 
@@ -223,7 +224,7 @@ jQuery( document ).ready(function($) {
 			    error: function ( e ) {
 				    HS_Search.log( 'Error: %s', e );
 			    }
-		    } ).then( function () {
+		    } ).always( function () {
 			    HS_Search.searching = false;
 		    } );
 	    }
