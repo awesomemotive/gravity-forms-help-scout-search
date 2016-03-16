@@ -96,7 +96,7 @@ jQuery( document ).ready(function($) {
 	     * @param item2
 	     */
 	    log: function ( item, item2 ) {
-		    if ( HS_Search.debug ) {
+		    if ( HS_Search.debug && console && console.log ) {
 			    console.log( item, item2 );
 		    }
 	    },
