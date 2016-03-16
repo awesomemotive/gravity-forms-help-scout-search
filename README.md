@@ -12,19 +12,22 @@ Add a Help Scout Docs search field to your Gravity Forms form. Used on the [Easy
 You can change the script configuration using the `gf_helpscout_docs_script_settings` filter. Modify the following array keys:
 
 ```
-'debug' => false, // Print debug logs in console or not
+'debug' => false, // Print debug logs or not
+'hideSubmit' => true, // Whether to hide the submit button until search is performed
 'minLength' => 3, // Minimum number of characters required to trigger search
-'limit' => 15, // Max limit for # of results to show
-'result_found' => '{count} result found&hellip;'
-'results_found' => '{count} results found&hellip;'
-'no_results_found' => 'No results found&hellip;'
-'enter_search' => 'Please enter a search term.'
-'not_long_enough' => 'Search must be at least {minLength} characters.',
-'error' => __('There was an error fetching search results.',
+'limit' => 5, // Max limit for # of results to show
+'text' => array(
+    'result_found' => '{count} result found&hellip;',
+    'results_found' => '{count} results found&hellip;',
+    'no_results_found' => 'No results found&hellip;',
+    'enter_search' => 'Please enter a search term.',
+    'not_long_enough' => 'Search must be at least {minLength} characters.',
+    'error' => 'There was an error fetching search results.',
+),
 'template' => array(
     'wrap_class' => 'docs-search-wrap',
     'before' => '<ul class="docs-search-results">',
-    'item' => '<li class="article"><a href="{url}" title="{preview}">{name}</a><li>',
+    'item' => '<li class="article"><a href="{url}" title="{preview}">{name}</a></li>',
     'after' => '</ul>',
     'results_found' => '<span class="{css_class}">{text}</span>',
 )
