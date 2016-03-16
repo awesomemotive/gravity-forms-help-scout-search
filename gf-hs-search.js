@@ -7,8 +7,9 @@ jQuery( document ).ready(function($) {
     var HS_Search = $.extend( GF_HS_Settings, {
 
 	    searching: false,
-
-	    allowed: false,
+	    
+	    /** Prevent new results from being shown by setting to true */
+	    cancelled: false,
 
 	    count: 0,
 
@@ -58,6 +59,7 @@ jQuery( document ).ready(function($) {
 
 		    if ( ignored_key_codes.indexOf( e.which ) > -1 ) {
 			    HS_Search.log( 'Ignored key press', e.which );
+			    HS_Search.cancelled = true; // Prevent new results from being shown
 			    return;
 		    }
 
@@ -81,6 +83,7 @@ jQuery( document ).ready(function($) {
 
 		    // Reset results
 		    HS_Search.results = [];
+		    HS_Search.cancelled = false;
 
 		    HS_Search.fetch_results();
 
@@ -213,7 +216,9 @@ jQuery( document ).ready(function($) {
 				    HS_Search.searching = true;
 			    },
 			    success: function ( results ) {
-				    HS_Search.set_results( results );
+				    if ( !HS_Search.cancelled ) {
+				        HS_Search.set_results( results );
+				    }
 			    },
 			    error: function ( e ) {
 				    HS_Search.log( 'Error: %s', e );
