@@ -85,7 +85,7 @@ class PW_GF_HS_Search {
 	 */
 	public function scripts( $form = array(), $ajax = false ) {
 
-		if( ! $this->has_docs_field( $form ) ) {
+		if( ! $this->has_docs_field( $form ) || wp_script_is( 'gf-hs-search' ) ) {
 			return;
 		}
 
