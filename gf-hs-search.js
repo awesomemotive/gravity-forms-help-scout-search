@@ -201,6 +201,8 @@ jQuery( document ).ready(function($) {
 
 		    query = HS_Search.sanitize_query( HS_Search.query );
 
+		    $search_wrap = HS_Search.wrap.find( '.docs-search-wrap' );
+
 		    // Extensions
 		    $.ajax( {
 			    url: 'https://docsapi.helpscout.net/v1/search/articles?status=published&visibility=public&query=' + encodeURIComponent( query ),
@@ -215,6 +217,7 @@ jQuery( document ).ready(function($) {
 			    },
 			    beforeSend: function () {
 				    HS_Search.searching = true;
+				    $search_wrap.addClass('docs-searching');
 			    },
 			    success: function ( results ) {
 				    if ( !HS_Search.cancelled ) {
@@ -226,6 +229,7 @@ jQuery( document ).ready(function($) {
 			    }
 		    } ).always( function () {
 			    HS_Search.searching = false;
+			    $search_wrap.removeClass('docs-searching');
 		    } );
 	    }
     } );
