@@ -35,7 +35,7 @@ jQuery( document ).ready(function($) {
 		    }
 
 		    HS_Search.wrap
-			    .append( '<div class="' + GF_HS_Settings.template.wrap_class + '" />' );
+			    .append( '<div class="' + GF_HS_Settings.template.wrap_class + '" style="display:none;" />' );
 
 		    HS_Search.field
 			    .attr( 'autocomplete', 'off' )
@@ -175,7 +175,9 @@ jQuery( document ).ready(function($) {
 
 		    HS_Search.results = results;
 
-		    HS_Search.wrap.find( '.docs-search-wrap' ).html( HS_Search.get_results_html() );
+		    HS_Search.wrap.find( '.docs-search-wrap' )
+			    .html( HS_Search.get_results_html() )
+			    .not(':visible').slideDown();
 
 		    if ( GF_HS_Settings.hideSubmit ) {
 			    HS_Search.footer.show();
