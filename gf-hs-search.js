@@ -79,22 +79,15 @@ jQuery( document ).ready(function($) {
 			    return;
 		    }
 
-
-		    HS_Search.maybe_perform_search();
-
-		    }, parseInt( GF_HS_Settings.searchDelay, 10 ) );
-	    },
-
-	    /**
-	     * Check whether a search is being performed. If not, start one.
-	     */
-	    maybe_perform_search: function () {
-
+		    // Check whether a search is being performed. If not, start one.
 		    if ( !HS_Search.searching ) {
 			    // Reset the results array
 			    HS_Search.perform_search();
 		    }
+
+		    }, parseInt( GF_HS_Settings.searchDelay, 10 ) );
 	    },
+
 
 	    /**
 	     * Reset results and fetch a new batch using fetch_results
