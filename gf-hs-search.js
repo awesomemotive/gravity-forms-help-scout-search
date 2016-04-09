@@ -15,6 +15,9 @@ jQuery( document ).ready(function($) {
 
 	    query: '',
 
+	    /** Hold the ms since the user stopped typing */
+	    timeout: null,
+
 	    /** Search field container */
 	    wrap: $( '.gform_wrapper .gfield.helpscout-docs' ),
 
@@ -55,6 +58,18 @@ jQuery( document ).ready(function($) {
 			    return;
 		    }
 
+		    HS_Search.log( 'Starting search countdown in %d ms', parseInt( GF_HS_Settings.searchDelay, 10 ) );
+
+		    var $el = $( this );
+
+		    // Clear the timeout if it has already been set.
+		    clearTimeout( HS_Search.timeout );
+
+		    // Make a new timeout set to go off in HS_Search.searchDelay ms
+		    HS_Search.timeout = setTimeout(function () {
+
+		    HS_Search.log( 'Performing search', e.which );
+
 		    HS_Search.query = $( this ).val();
 
 		    // Deleted, empty search box
@@ -66,6 +81,8 @@ jQuery( document ).ready(function($) {
 
 
 		    HS_Search.maybe_perform_search();
+
+		    }, parseInt( GF_HS_Settings.searchDelay, 10 ) );
 	    },
 
 	    /**
