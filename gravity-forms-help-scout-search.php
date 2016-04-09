@@ -98,8 +98,8 @@ class PW_GF_HS_Search {
 			'minLength' => 3, // Minimum number of characters required to trigger search
 			'limit' => 5, // Max limit for # of results to show
 			'text' => array(
-				'result_found' => __('{count} result found&hellip;'),
-				'results_found' => __('{count} results found&hellip;'),
+				'result_found' => __('We found {count} article that may help:'),
+				'results_found' => __('We found {count} articles that may help:'),
 				'no_results_found' => __('No results found&hellip;'),
 				'enter_search' => __('Please enter a search term.'),
 				'not_long_enough' => __('Search must be at least {minLength} characters.'),
