@@ -96,7 +96,7 @@ class PW_GF_HS_Search {
 			'hideSubmit' => true, // Whether to hide the submit button until search is performed
 			'searchDelay' => 750, // Delay time in ms after a user stops typing and before search is performed
 			'minLength' => 3, // Minimum number of characters required to trigger search
-			'limit' => 5, // Max limit for # of results to show
+			'limit' => 25, // Max limit for # of results to show
 			'text' => array(
 				'result_found' => __('We found {count} article that may help:'),
 				'results_found' => __('We found {count} articles that may help:'),
