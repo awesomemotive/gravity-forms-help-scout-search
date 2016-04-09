@@ -108,7 +108,7 @@ class PW_GF_HS_Search {
 			'template' => array(
 				'wrap_class' => 'docs-search-wrap',
 				'before' => '<ul class="docs-search-results">',
-				'item' => '<li class="article"><a href="{url}" title="{preview}">{name}</a></li>',
+				'item' => '<li class="article"><a href="{url}" title="{preview}" target="_blank">{name}</a></li>',
 				'after' => '</ul>',
 				'results_found' => '<span class="{css_class}">{text}</span>',
 			),
