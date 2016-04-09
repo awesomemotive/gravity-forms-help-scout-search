@@ -60,7 +60,7 @@ jQuery( document ).ready(function($) {
 
 		    HS_Search.log( 'Starting search countdown in %d ms', parseInt( GF_HS_Settings.searchDelay, 10 ) );
 
-		    var $el = $( this );
+		    var $el = $( this ); // Used inside setTimout
 
 		    // Clear the timeout if it has already been set.
 		    clearTimeout( HS_Search.timeout );
@@ -70,7 +70,7 @@ jQuery( document ).ready(function($) {
 
 		    HS_Search.log( 'Performing search', e.which );
 
-		    HS_Search.query = $( this ).val();
+			    HS_Search.query = $el.val();
 
 		    // Deleted, empty search box
 		    if ( HS_Search.query.length < GF_HS_Settings.minLength || ( 8 === e.which || 46 === e.which ) && HS_Search.query.length === 0 ) {
