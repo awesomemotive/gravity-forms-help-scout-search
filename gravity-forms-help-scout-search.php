@@ -68,7 +68,7 @@ class PW_GF_HS_Search {
 		$text_fields = GFCommon::get_fields_by_type( $form, 'text' );
 
 		foreach( $text_fields as $text_field ) {
-			if( strpos( $text_field['cssClass'], self::field_css_class ) !== false ) {
+			if( strpos( rgar( $text_field, 'cssClass' ), self::field_css_class ) !== false ) {
 				return true;
 			}
 		}
