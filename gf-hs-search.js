@@ -66,24 +66,24 @@ jQuery( document ).ready(function($) {
 		    clearTimeout( HS_Search.timeout );
 
 		    // Make a new timeout set to go off in HS_Search.searchDelay ms
-		    HS_Search.timeout = setTimeout(function () {
+		    HS_Search.timeout = setTimeout( function () {
 
-		    HS_Search.log( 'Performing search', e.which );
+			    HS_Search.log( 'Performing search', e.which );
 
 			    HS_Search.query = $el.val();
 
-		    // Deleted, empty search box
-		    if ( HS_Search.query.length < GF_HS_Settings.minLength || ( 8 === e.which || 46 === e.which ) && HS_Search.query.length === 0 ) {
-			    HS_Search.cancelled = true; // Prevent new results from being shown
-			    HS_Search.set_results( {} );
-			    return;
-		    }
+			    // Deleted, empty search box
+			    if ( HS_Search.query.length < GF_HS_Settings.minLength || ( 8 === e.which || 46 === e.which ) && HS_Search.query.length === 0 ) {
+				    HS_Search.cancelled = true; // Prevent new results from being shown
+				    HS_Search.set_results( {} );
+				    return;
+			    }
 
-		    // Check whether a search is being performed. If not, start one.
-		    if ( !HS_Search.searching ) {
-			    // Reset the results array
-			    HS_Search.perform_search();
-		    }
+			    // Check whether a search is being performed. If not, start one.
+			    if ( !HS_Search.searching ) {
+				    // Reset the results array
+				    HS_Search.perform_search();
+			    }
 
 		    }, parseInt( GF_HS_Settings.searchDelay, 10 ) );
 	    },
