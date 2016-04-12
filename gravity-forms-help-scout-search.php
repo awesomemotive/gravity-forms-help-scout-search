@@ -94,7 +94,6 @@ class PW_GF_HS_Search {
 
 		$script_settings = apply_filters( 'gf_helpscout_docs_script_settings', array(
 			'debug' => false, // Print debug logs or not
-			'hideSubmit' => true, // Whether to hide the submit button until search is performed
 			'searchDelay' => 750, // Delay time in ms after a user stops typing and before search is performed
 			'minLength' => 3, // Minimum number of characters required to trigger search
 			'limit' => 25, // Max limit for # of results to show

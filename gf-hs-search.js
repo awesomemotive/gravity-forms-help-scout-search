@@ -21,21 +21,11 @@ jQuery( document ).ready(function($) {
 	    /** Search field container */
 	    wrap: $( '.gform_wrapper .gfield.helpscout-docs' ),
 
-	    /** Gravity Forms submit button */
-	    footer: $( '.gform_wrapper .gform_footer' ),
-
-	    submit: $( '.gform_button[type="submit"]', '.gform_wrapper .gform_page_footer' ),
-
 	    field: $( '.gform_wrapper .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
 
 	    results: {},
 
 	    init: function () {
-
-
-		    if ( GF_HS_Settings.hideSubmit ) {
-		        HS_Search.footer.hide();
-		    }
 
 		    HS_Search.wrap
 			    .append( '<div class="' + GF_HS_Settings.template.wrap_class + '" style="display:none;" />' );
@@ -188,10 +178,6 @@ jQuery( document ).ready(function($) {
 		    HS_Search.wrap.find( '.docs-search-wrap' )
 			    .html( HS_Search.get_results_html() )
 			    .not(':visible').slideDown();
-
-		    if ( GF_HS_Settings.hideSubmit ) {
-			    HS_Search.footer.show();
-		    }
 	    },
 
 	    /**
