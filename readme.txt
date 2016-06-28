@@ -19,6 +19,8 @@ This plugin requires [Gravity Forms](https://gravityforms.com) and a [Help Scout
 
 See the Installation tab for instructions on configuring the plugin.
 
+![Demo](https://pippinspluginscom.c.presscdn.com/wp-content/uploads/2016/06/Jun-28-2016-13-44-03.gif)
+
 Find a bug? Have a suggestion? Let us know on [GitHub](https://github.com/easydigitaldownloads/gravity-forms-help-scout-search)!
 
 == Installation ==

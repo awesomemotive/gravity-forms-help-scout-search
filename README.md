@@ -2,6 +2,8 @@
 
 Add a Help Scout Docs search field to your Gravity Forms form. Used on the [Easy Digital Downloads ticket submission page](https://easydigitaldownloads.com/support/).
 
+![Demo](https://pippinspluginscom.c.presscdn.com/wp-content/uploads/2016/06/Jun-28-2016-13-44-03.gif)
+
 ## To use:
 
 1. The Help Scout Docs Search Field plugin requires an API key. Define it using the `HELPSCOUT_DOCS_API_KEY` constant, or set it using the `gf_helpscout_docs_api_key` filter.
