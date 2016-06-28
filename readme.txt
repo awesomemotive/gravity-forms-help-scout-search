@@ -6,7 +6,7 @@ Donate link: http://pippinsplugins.com/support-the-site
 Tags: gravity forms, help scout, helpscout, documentation
 Requires at least: 3.6
 Tested up to: 4.6
-Stable Tag: 2.1
+Stable Tag: 2.1.1
 License: GNU Version 2 or Any Later Version
 
 Add a Help Scout Docs search field to your Gravity Forms form.

@@ -3,7 +3,7 @@
  * Plugin Name: Gravity Forms - Help Scout Docs Search Field
  * Description: Adds a special text field for searching Help Scout docs
  * Author: Pippin Williamson and Zack Katz
- * Version: 2.1
+ * Version: 2.1.1
  * License: GPLv3
  */
 
