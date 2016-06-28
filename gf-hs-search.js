@@ -2,9 +2,9 @@
  * @globals {object} GF_HS_Settings
  */
 
-jQuery( document ).ready(function($) {
+jQuery( document ).on( 'gform_post_render', function() {
 
-	var HS_Search = $.extend( GF_HS_Settings, {
+	var HS_Search = jQuery.extend( GF_HS_Settings, {
 
 		searching: false,
 
@@ -19,9 +19,9 @@ jQuery( document ).ready(function($) {
 		timeout: null,
 
 		/** Search field container */
-		wrap: $( '.gform_wrapper .gfield.helpscout-docs' ),
+		wrap: jQuery( '.gform_wrapper .gfield.helpscout-docs' ),
 
-		field: $( '.gform_wrapper .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
+		field: jQuery( '.gform_wrapper .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
 
 		results: {},
 
@@ -50,7 +50,7 @@ jQuery( document ).ready(function($) {
 
 			HS_Search.log( 'Starting search countdown in %d ms', parseInt( GF_HS_Settings.searchDelay, 10 ) );
 
-			var $el = $( this ); // Used inside setTimout
+			var $el = jQuery( this ); // Used inside setTimout
 
 			// Clear the timeout if it has already been set.
 			clearTimeout( HS_Search.timeout );
@@ -111,7 +111,7 @@ jQuery( document ).ready(function($) {
 
 				output = GF_HS_Settings.template.before;
 
-				$.each( HS_Search.results.articles.results, function ( key, article ) {
+				jQuery.each( HS_Search.results.articles.results, function ( key, article ) {
 
 					// Default to true
 					var keep = true;
@@ -122,7 +122,7 @@ jQuery( document ).ready(function($) {
 						// If we are searching within specific collections, we need to check the article's collection ID
 						keep = false;
 
-						$.each( GF_HS_Settings.collections, function ( collection_key, value ) {
+						jQuery.each( GF_HS_Settings.collections, function ( collection_key, value ) {
 
 							// Check to see if the article is in the collection
 							var regex = new RegExp("^/docs/"  + value );
@@ -231,7 +231,7 @@ jQuery( document ).ready(function($) {
 			$search_wrap = HS_Search.wrap.find( '.docs-search-wrap' );
 
 			// Extensions
-			$.ajax( {
+			jQuery.ajax( {
 				url: 'https://' + GF_HS_Settings._subdomain + '.helpscoutdocs.com/search/ajax?ref=gf&query=' + encodeURIComponent( query ),
 				async: true,
 				dataType: 'json',
@@ -255,4 +255,5 @@ jQuery( document ).ready(function($) {
 	} );
 
 	HS_Search.init();
-});
+
+} );
