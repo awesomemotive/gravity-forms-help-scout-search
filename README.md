@@ -6,7 +6,7 @@ Add a Help Scout Docs search field to your Gravity Forms form. Used on the [Easy
 
 ## To use:
 
-1. The Help Scout Docs Search Field plugin requires an API key. Define it using the `HELPSCOUT_DOCS_API_KEY` constant, or set it using the `gf_helpscout_docs_api_key` filter.
+1. The Help Scout Docs Search Field plugin requires the Docs subdomain to be set. You can find it in Help Scout > Manage > Docs > Site Settings > Sub-domain. Define it using the `HELPSCOUT_DOCS_SUBDOMAIN` constant, or set it using the `gf_helpscout_docs_subdomain` filter.
 2. Add a text field to your Gravity Forms form, then add `helpscout-docs` to the "Custom CSS Class" setting (in the field's Appearance tab).
 3. Optionally, use the `GF_HELPSCOUT_DOCS_COLLECTIONS` constant to specify the collection IDs the plugin should search in. Example:
 ```php

@@ -3,38 +3,43 @@
  * Plugin Name: Gravity Forms - Help Scout Docs Search Field
  * Description: Adds a special text field for searching Help Scout docs
  * Author: Pippin Williamson and Zack Katz
- * Version: 2.1.1
+ * Version: 3.0
  * License: GPLv3
  */
 
 class PW_GF_HS_Search {
 
 	/**
-	 * An API key for Help Scout Docs
-	 * @var string
+	 * Help Scout sub-domain. Find yours in Help Scout > Manage > Docs > Site Settings > Sub-domain
+	 * @var string Help Scout Docs subdomain, example: "https://{subdomain}.helpscoutdocs.com"
+	 * @since 3.0
 	 */
-	private $docs_api_key = '';
+	private $subdomain = '';
+
+	/**
+	 * @var array Array of Help Scout Docs Collection IDs, if you want to limit results to a set of collections.
+	 */
 	private $collections = array();
 
 	const field_css_class = 'helpscout-docs';
 
-	const version = '2.1';
+	const version = '3.0';
 
 	public function __construct() {
 
-		$api_key     = defined( 'HELPSCOUT_DOCS_API_KEY' ) ? HELPSCOUT_DOCS_API_KEY : '';
+		$subdomain     = defined( 'HELPSCOUT_DOCS_SUBDOMAIN' ) ? HELPSCOUT_DOCS_SUBDOMAIN : '';
 		$collections = defined( 'GF_HELPSCOUT_DOCS_COLLECTIONS' ) ? explode( ':', GF_HELPSCOUT_DOCS_COLLECTIONS ) : array();
 
-		if ( $api_key = apply_filters( 'gf_helpscout_docs_api_key', $api_key ) ) {
+		if ( $subdomain = apply_filters( 'gf_helpscout_docs_subdomain', $subdomain ) ) {
 
-			$this->docs_api_key = $api_key;
+			$this->subdomain = $subdomain;
 
 			$this->collections  = apply_filters( 'gf_helpscout_docs_collections', $collections );
 
 			$this->init();
 
 		} else {
-			_doing_it_wrong( __METHOD__, __( 'The Help Scout Docs Search Field plugin requires an API key. Define it using the `HELPSCOUT_DOCS_API_KEY` constant, or set it using the `gf_helpscout_docs_api_key` filter' ), self::version );
+			_doing_it_wrong( __METHOD__, __( 'The Help Scout Docs Search Field plugin requires a base URL. Define it using the `HELPSCOUT_DOCS_BASE_URL` constant, or set it using the `gf_helpscout_docs_base_url` filter' ), self::version );
 		}
 
 	}
@@ -119,7 +124,7 @@ class PW_GF_HS_Search {
 			'collections' => $this->collections, // The collection IDs to search in
 
 			// Do not modify
-			'_basic_auth' => base64_encode( $this->docs_api_key. ":X" ),
+			'_subdomain' => esc_js( $this->subdomain ),
 		) );
 
 		wp_localize_script( 'gf-hs-search', 'GF_HS_Settings', $script_settings );
