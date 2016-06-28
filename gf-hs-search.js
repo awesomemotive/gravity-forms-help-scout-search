@@ -107,11 +107,11 @@ jQuery( document ).ready(function($) {
 
 			var output = '', count = 0;
 
-			if ( 'undefined' !== typeof( HS_Search.results.articles ) && HS_Search.results.articles.items.length ) {
+			if ( 'undefined' !== typeof( HS_Search.results.articles ) && HS_Search.results.articles.results.length ) {
 
 				output = GF_HS_Settings.template.before;
 
-				$.each( HS_Search.results.articles.items, function ( key, article ) {
+				$.each( HS_Search.results.articles.results, function ( key, article ) {
 
 					// Default to true
 					var keep = true;
@@ -124,7 +124,10 @@ jQuery( document ).ready(function($) {
 
 						$.each( GF_HS_Settings.collections, function ( collection_key, value ) {
 
-							if( article.collectionId == value ) {
+							// Check to see if the article is in the collection
+							var regex = new RegExp("^/docs/"  + value );
+
+							if( regex.exec( article.docsUrl ) ) {
 
 								// Collection ID of article matches whitelist, keep the article
 								keep = true;
@@ -229,16 +232,9 @@ jQuery( document ).ready(function($) {
 
 			// Extensions
 			$.ajax( {
-				url: 'https://docsapi.helpscout.net/v1/search/articles?status=published&visibility=public&query=' + encodeURIComponent( query ),
+				url: 'https://' + GF_HS_Settings._subdomain + '.helpscoutdocs.com/search/ajax?ref=gf&query=' + encodeURIComponent( query ),
 				async: true,
-				contentType: 'application/json',
 				dataType: 'json',
-				headers: {
-					'Authorization': 'Basic ' + GF_HS_Settings._basic_auth
-				},
-				xhrFields: {
-					withCredentials: false
-				},
 				beforeSend: function () {
 					HS_Search.searching = true;
 					$search_wrap.addClass('docs-searching');

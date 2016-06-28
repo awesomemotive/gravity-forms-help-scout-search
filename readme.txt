@@ -2,11 +2,11 @@
 Author URI: https://pippinsplugins.com
 Plugin URI: https://pippinsplugins.com/gravity-forms-help-scout-docs-search-field
 Contributors: mordauk, katzwebservices
-Donate link: http://pippinsplugins.com/support-the-site
+Donate link: https://pippinsplugins.com/support-the-site
 Tags: gravity forms, help scout, helpscout, documentation
 Requires at least: 3.6
 Tested up to: 4.6
-Stable Tag: 2.1.1
+Stable Tag: 3.0
 License: GNU Version 2 or Any Later Version
 
 Add a Help Scout Docs search field to your Gravity Forms form.
@@ -25,9 +25,9 @@ Find a bug? Have a suggestion? Let us know on [GitHub](https://github.com/easydi
 
 == Installation ==
 
-1. The Help Scout Docs Search Field plugin requires an API key. Define it using the HELPSCOUT_DOCS_API_KEY constant, or set it using the gf_helpscout_docs_api_key filter.
+1. The Help Scout Docs Search Field plugin requires the Help Scout Docs sub-domain to be set. Define it using the `HELPSCOUT_DOCS_SUBDOMAIN` constant, or set it using the `gf_helpscout_docs_subdomain` filter. You can find it in Help Scout under "Manage" > "Docs" > "Site Settings" > "Sub-domain".
 `
-define( 'HELPSCOUT_DOCS_API_KEY', 'Your key here' );
+define( 'HELPSCOUT_DOCS_SUBDOMAIN', 'Your sub-domain here' );
 `
 
 2. Add a text field to your Gravity Forms form, then add `helpscout-docs` to the "Custom CSS Class" setting (in the field's Appearance tab).
@@ -39,6 +39,11 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 
 
 == Changelog ==
+
+= 3.0, June 28, 2016 =
+
+* No longer requires a Help Scout API key
+* Now requires setting your Help Scout Docs sub-domain by using the `HELPSCOUT_DOCS_SUBDOMAIN` constant or `gf_helpscout_docs_subdomain` filter. Find your sub-domain in Help Scout under "Manage" > "Docs" > "Site Settings" > "Sub-domain".
 
 = 2.1, June 28, 2016 =
 
