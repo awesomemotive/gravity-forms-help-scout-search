@@ -13,9 +13,13 @@ Add a Help Scout Docs search field to your Gravity Forms form.
 
 == Description ==
 
-Add a Help Scout Docs search field to your Gravity Forms form. Used on the Easy Digital Downloads ticket submission page.
+Add a Help Scout Docs search field to your Gravity Forms form. Used on the [Easy Digital Downloads ticket submission page](https://easydigitaldownloads.com/support/).
 
 This plugin requires [Gravity Forms](https://gravityforms.com) and a [Help Scout](https://helpscout.net) account.
+
+See the Installation tab for instructions on configuring the plugin.
+
+Find a bug? Have a suggestion? Let us know on [GitHub](https://github.com/easydigitaldownloads/gravity-forms-help-scout-search)!
 
 == Installation ==
 
