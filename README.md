@@ -30,5 +30,6 @@ You can change the script configuration using the `gf_helpscout_docs_script_sett
     'item' => '<li class="article"><a href="{url}" title="{preview}">{name}</a></li>',
     'after' => '</ul>',
     'results_found' => '<span class="{css_class}">{text}</span>',
-)
+),
+'collections' => array( 'collection_id_1', 'collection_id_2' ),
 ```

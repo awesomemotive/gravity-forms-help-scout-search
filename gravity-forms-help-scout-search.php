@@ -14,6 +14,7 @@ class PW_GF_HS_Search {
 	 * @var string
 	 */
 	private $docs_api_key = '';
+	private $collections = array();
 
 	const field_css_class = 'helpscout-docs';
 
@@ -21,11 +22,14 @@ class PW_GF_HS_Search {
 
 	public function __construct() {
 
-		$api_key = defined( 'HELPSCOUT_DOCS_API_KEY' ) ? HELPSCOUT_DOCS_API_KEY : '';
+		$api_key     = defined( 'HELPSCOUT_DOCS_API_KEY' ) ? HELPSCOUT_DOCS_API_KEY : '';
+		$collections = defined( 'GF_HELPSCOUT_DOCS_COLLECTIONS' ) ? explode( ':', GF_HELPSCOUT_DOCS_COLLECTIONS ) : array();
 
 		if ( $api_key = apply_filters( 'gf_helpscout_docs_api_key', $api_key ) ) {
 
 			$this->docs_api_key = $api_key;
+
+			$this->collections  = apply_filters( 'gf_helpscout_docs_collections', $collections );
 
 			$this->init();
 
@@ -53,7 +57,7 @@ class PW_GF_HS_Search {
 	 * @return void
 	 */
 	public function register_script() {
-		$min = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? '.min' : '';
+		$min = ( defined('SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 		wp_register_script( 'gf-hs-search', plugins_url( 'gf-hs-search' . $min . '.js', __FILE__ ), array( 'jquery', 'gform_gravityforms' ), self::version, true );
 	}
 
@@ -112,6 +116,7 @@ class PW_GF_HS_Search {
 				'after' => '</ul>',
 				'results_found' => '<span class="{css_class}">{text}</span>',
 			),
+			'collections' => $this->collections, // The collection IDs to search in
 
 			// Do not modify
 			'_basic_auth' => base64_encode( $this->docs_api_key. ":X" ),
