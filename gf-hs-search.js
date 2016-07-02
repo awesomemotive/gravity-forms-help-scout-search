@@ -11,6 +11,8 @@ jQuery( document ).on( 'gform_post_render', function() {
 		/** Prevent new results from being shown by setting to true */
 		cancelled: false,
 
+		has_searched: false,
+
 		count: 0,
 
 		query: '',
@@ -21,11 +23,33 @@ jQuery( document ).on( 'gform_post_render', function() {
 		/** Search field container */
 		wrap: jQuery( '.gform_wrapper .gfield.helpscout-docs' ),
 
+		form: jQuery( '.gform_wrapper .gfield.helpscout-docs' ).closest( '.gform_wrapper' ),
+
 		field: jQuery( '.gform_wrapper .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
 
 		results: {},
 
 		init: function () {
+
+			HS_Search.form
+				.on( 'keypress', function(e) {
+
+					var code = e.which || e.keyCode;
+
+					if( HS_Search.has_searched ) {
+						return;
+					}
+
+					if( ! HS_Search.field.is(':focus') ) {
+						return;
+					}
+
+					if( code == 13  && ! jQuery( e.target ).is( 'textarea,input[type="submit"],input[type="button"]' ) ) {
+						e.preventDefault();
+						return false;
+					}
+
+				});
 
 			HS_Search.wrap
 				.append( '<div class="' + GF_HS_Settings.template.wrap_class + '" style="display:none;" />' );
@@ -244,6 +268,7 @@ jQuery( document ).on( 'gform_post_render', function() {
 					if ( !HS_Search.cancelled ) {
 						HS_Search.set_results( results );
 						jQuery( 'body' ).trigger( 'gf_hs_search_results_found' );
+						HS_Search.has_searched = true;
 					}
 				},
 				error: function ( e ) {
