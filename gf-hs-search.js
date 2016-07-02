@@ -238,14 +238,17 @@ jQuery( document ).on( 'gform_post_render', function() {
 				beforeSend: function () {
 					HS_Search.searching = true;
 					$search_wrap.addClass('docs-searching');
+					jQuery( 'body' ).trigger( 'gf_hs_search_started' );
 				},
 				success: function ( results ) {
 					if ( !HS_Search.cancelled ) {
 						HS_Search.set_results( results );
+						jQuery( 'body' ).trigger( 'gf_hs_search_results_found' );
 					}
 				},
 				error: function ( e ) {
 					HS_Search.log( 'Error: %s', e );
+					jQuery( 'body' ).trigger( 'gf_hs_search_error' );
 				}
 			} ).always( function () {
 				HS_Search.searching = false;
