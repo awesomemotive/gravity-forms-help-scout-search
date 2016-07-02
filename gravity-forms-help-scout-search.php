@@ -51,6 +51,7 @@ class PW_GF_HS_Search {
 
 		// Enqueue only when display a Gravity Forms form
 		add_action( 'gform_pre_enqueue_scripts', array( $this, 'scripts' ) );
+		add_action( 'gform_pre_enqueue_scripts', array( $this, 'styles' ) );
 
 		// Trigger scripts being printed on Gravity Forms Preview page
 		add_filter( 'gform_preview_footer', array( $this, 'print_footer_scripts' ), 10 );
@@ -128,6 +129,7 @@ class PW_GF_HS_Search {
 		) );
 
 		wp_localize_script( 'gf-hs-search', 'GF_HS_Settings', $script_settings );
+
 	}
 
 	/**
@@ -139,6 +141,32 @@ class PW_GF_HS_Search {
 	 */
 	public function print_footer_scripts() {
 		wp_print_scripts( 'gf-hs-search' );
+	}
+
+	/**
+	 * Print scripts on the Gravity Forms preview page
+	 *
+	 * @since 3.2
+	 *
+	 * @return void
+	 */
+	public function styles() {
+?>
+		<style type="text/css">
+			.gf-hs-spinner {
+				background: url( "<?php echo admin_url( 'images/spinner.gif' ); ?>" ) no-repeat;
+				-webkit-background-size: 20px 20px;
+				background-size: 20px 20px;
+				display: inline-block;
+				opacity: 0.7;
+				filter: alpha(opacity=70);
+				width: 20px;
+				height: 20px;
+				margin: 0;
+				vertical-align: middle;
+			}
+		</style>
+<?php
 	}
 
 }
