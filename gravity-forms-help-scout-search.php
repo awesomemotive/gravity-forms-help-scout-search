@@ -143,4 +143,14 @@ class PW_GF_HS_Search {
 
 }
 
-new PW_GF_HS_Search;
+/**
+ * Load the plugin
+ *
+ * @since 3.2
+ *
+ * @return void
+ */
+function gf_hs_search_init() {
+    new PW_GF_HS_Search;
+}
+add_action( 'plugins_loaded', 'gf_hs_search_init' );
