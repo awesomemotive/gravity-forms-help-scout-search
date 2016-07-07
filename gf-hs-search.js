@@ -11,6 +11,8 @@ jQuery( document ).on( 'gform_post_render', function() {
 		/** Prevent new results from being shown by setting to true */
 		cancelled: false,
 
+		has_searched: false,
+
 		count: 0,
 
 		query: '',
@@ -21,11 +23,35 @@ jQuery( document ).on( 'gform_post_render', function() {
 		/** Search field container */
 		wrap: jQuery( '.gform_wrapper .gfield.helpscout-docs' ),
 
+		form: jQuery( '.gform_wrapper .gfield.helpscout-docs' ).closest( '.gform_wrapper' ),
+
 		field: jQuery( '.gform_wrapper .gfield.helpscout-docs' ).find( 'input[type="text"]' ),
+
+		onclick : '',
+
+		keypress : '',
 
 		results: {},
 
 		init: function () {
+
+			HS_Search.form.find('.gform_next_button').hide();
+
+			HS_Search.form
+				.on( 'keypress', function(e) {
+
+					var code = e.which || e.keyCode;
+
+					if( ! HS_Search.field.is(':focus') ) {
+						return;
+					}
+
+					if( code == 13  && ! jQuery( e.target ).is( 'textarea,input[type="submit"],input[type="button"]' ) ) {
+						e.preventDefault();
+						return false;
+					}
+
+				});
 
 			HS_Search.wrap
 				.append( '<div class="' + GF_HS_Settings.template.wrap_class + '" style="display:none;" />' );
@@ -41,7 +67,7 @@ jQuery( document ).on( 'gform_post_render', function() {
 		 */
 		search_changed: function ( e ) {
 
-			var ignored_key_codes = [ 9, 16, 17, 18, 20, 32, 33, 34, 37, 38, 91, 93 ];
+			var ignored_key_codes = [ 9, 13, 16, 17, 18, 20, 32, 33, 34, 37, 38, 91, 93 ];
 
 			if ( ignored_key_codes.indexOf( e.which ) > -1 ) {
 				HS_Search.log( 'Ignored key press', e.which );
@@ -251,7 +277,9 @@ jQuery( document ).on( 'gform_post_render', function() {
 				success: function ( results ) {
 					if ( !HS_Search.cancelled ) {
 						HS_Search.set_results( results );
+						HS_Search.form.find('.gform_next_button').show();
 						jQuery( 'body' ).trigger( 'gf_hs_search_results_found' );
+						HS_Search.has_searched = true;
 					}
 				},
 				error: function ( e ) {
