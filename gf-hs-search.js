@@ -52,6 +52,7 @@ jQuery( document ).on( 'gform_post_render', function() {
 
 			var $el = jQuery( this ); // Used inside setTimout
 
+
 			// Clear the timeout if it has already been set.
 			clearTimeout( HS_Search.timeout );
 
@@ -238,7 +239,14 @@ jQuery( document ).on( 'gform_post_render', function() {
 				beforeSend: function () {
 					HS_Search.searching = true;
 					$search_wrap.addClass('docs-searching');
+
+					// Show a spinner
+					HS_Search.wrap.find( '.docs-search-wrap' )
+						.show()
+						.html( '<span class="gf-hs-spinner"></span>' );
+
 					jQuery( 'body' ).trigger( 'gf_hs_search_started' );
+
 				},
 				success: function ( results ) {
 					if ( !HS_Search.cancelled ) {
