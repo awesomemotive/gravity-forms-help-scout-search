@@ -40,7 +40,7 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 
 == Changelog ==
 
-= 3.0.2, July 7, 2016
+= 3.0.2, July 7, 2016 =
 
 * Fix: Next page shown before search results are added to the page
 * Fix: Search could be bypassed by entering enter key
