@@ -6,7 +6,7 @@ Donate link: https://pippinsplugins.com/support-the-site
 Tags: gravity forms, help scout, helpscout, documentation
 Requires at least: 3.6
 Tested up to: 4.6
-Stable Tag: 3.0.1
+Stable Tag: 3.0.2
 License: GNU Version 2 or Any Later Version
 
 Add a Help Scout Docs search field to your Gravity Forms form.
@@ -39,6 +39,14 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 
 
 == Changelog ==
+
+= 3.0.2, July 7, 2016
+
+* Fix: Next page shown before search results are added to the page
+* Fix: Search could be bypassed by entering enter key
+* Tweak: Plugin now loaded on plugins_loaded
+* Tweak: Added JS browser events
+* Tweak: Added a loading icon when search is processing
 
 = 3.0.1, June 28, 2016 =
 * Fixed: Search no longer worked when clicking "back" on an AJAX form with multiple pages
