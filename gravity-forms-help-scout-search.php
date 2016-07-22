@@ -39,7 +39,7 @@ class PW_GF_HS_Search {
 			$this->init();
 
 		} else {
-			_doing_it_wrong( __METHOD__, __( 'The Help Scout Docs Search Field plugin requires a base URL. Define it using the `HELPSCOUT_DOCS_BASE_URL` constant, or set it using the `gf_helpscout_docs_base_url` filter' ), self::version );
+			_doing_it_wrong( __METHOD__, __( 'The Help Scout Docs Search Field plugin requires a base URL. Define it using the `HELPSCOUT_DOCS_BASE_URL` constant, or set it using the `gf_helpscout_docs_subdomain` filter' ), self::version );
 		}
 
 	}
