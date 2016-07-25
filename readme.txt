@@ -40,6 +40,12 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 
 == Changelog ==
 
+= 3.0.3 =
+
+* Fixed: Prevent scripts from running once for each form on a page
+* Fixed: Prevent styles from printing multiple times
+* Added: `gf_helpscout_docs_spinner_after` action after the CSS is printed
+
 = 3.0.2, July 7, 2016 =
 
 * Fix: Next page shown before search results are added to the page
@@ -49,6 +55,7 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 * Tweak: Added a loading icon when search is processing
 
 = 3.0.1, June 28, 2016 =
+
 * Fixed: Search no longer worked when clicking "back" on an AJAX form with multiple pages
 
 = 3.0, June 28, 2016 =
