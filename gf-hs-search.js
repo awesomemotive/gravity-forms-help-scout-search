@@ -2,7 +2,7 @@
  * @globals {object} GF_HS_Settings
  */
 
-jQuery( document ).on( 'gform_post_render', function() {
+jQuery( document ).one( 'gform_post_render', function() {
 
 	var HS_Search = jQuery.extend( GF_HS_Settings, {
 
