@@ -137,10 +137,18 @@ class PW_GF_HS_Search {
 	 * Print scripts on the Gravity Forms preview page
 	 *
 	 * @since 1.2
+	 * @since 3.0.3 Check $form_id
 	 *
 	 * @return void
 	 */
-	public function print_footer_scripts() {
+	public function print_footer_scripts( $form_id = 0 ) {
+
+		$form = GFAPI::get_form( $form_id );
+
+		if( ! $form || ! $this->has_docs_field( $form ) ) {
+			return;
+		}
+
 		wp_print_scripts( 'gf-hs-search' );
 	}
 
