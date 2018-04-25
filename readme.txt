@@ -5,8 +5,8 @@ Contributors: mordauk, katzwebservices
 Donate link: https://pippinsplugins.com/support-the-site
 Tags: gravity forms, help scout, helpscout, documentation
 Requires at least: 3.6
-Tested up to: 4.6
-Stable Tag: 3.0.2
+Tested up to: 4.9.5
+Stable Tag: 3.0.3
 License: GNU Version 2 or Any Later Version
 
 Add a Help Scout Docs search field to your Gravity Forms form.
@@ -39,6 +39,8 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 
 
 == Changelog ==
+
+* Fix: Javascript error on Form Preview when the form doesn't have a Help Scout search field
 
 = 3.0.2, July 7, 2016 =
 
