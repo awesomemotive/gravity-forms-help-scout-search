@@ -40,11 +40,16 @@ define( 'GF_HELPSCOUT_DOCS_COLLECTIONS', '538f1914e4b034fd486247ce:548f192ae4b07
 
 == Changelog ==
 
-= 3.0.3 =
+= 3.0.3, April 26, 2018 =
 
 * Fix: Prevent scripts from running once for each form on a page
 * Fix: Prevent styles from printing multiple times
 * Fix: Javascript error on Form Preview when the form doesn't have a Help Scout search field
+* Improvements to results template
+    - Fixed: Convert HTML entities in doc preview so quotation marks in an article no longer breaks rendering
+    - Modified: Add an ellipses "…" at the end of the article preview
+    - Fix: Replace multiple spaces and replace with one (HS strips HTML tags and leaves whitespace)
+    - Fix: Replacing multiple instances of a template tag not working
 * Added: `gf_helpscout_docs_spinner_after` action after the CSS is printed
 
 = 3.0.2, July 7, 2016 =
