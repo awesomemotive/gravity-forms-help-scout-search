@@ -4,6 +4,11 @@
 
 jQuery( document ).one( 'gform_post_render', function() {
 
+	if ( ! window.hasOwnProperty('GF_HS_Settings') ) {
+		console.error('There was a problem localizing Help Scout settings.');
+		return;
+	}
+
 	var HS_Search = jQuery.extend( GF_HS_Settings, {
 
 		searching: false,
