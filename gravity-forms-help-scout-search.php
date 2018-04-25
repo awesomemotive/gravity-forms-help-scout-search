@@ -3,7 +3,7 @@
  * Plugin Name: Gravity Forms - Help Scout Docs Search Field
  * Description: Adds a special text field for searching Help Scout docs
  * Author: Pippin Williamson and Zack Katz
- * Version: 3.0.2
+ * Version: 3.0.3
  * License: GPLv3
  */
 
@@ -23,7 +23,7 @@ class PW_GF_HS_Search {
 
 	const field_css_class = 'helpscout-docs';
 
-	const version = '3.0.2';
+	const version = '3.0.3';
 
 	public function __construct() {
 
@@ -50,8 +50,8 @@ class PW_GF_HS_Search {
 		add_action( 'init', array( $this, 'register_script' ), 1 );
 
 		// Enqueue only when display a Gravity Forms form
-		add_action( 'gform_pre_enqueue_scripts', array( $this, 'scripts' ) );
-		add_action( 'gform_pre_enqueue_scripts', array( $this, 'styles' ) );
+		add_action( 'gform_pre_enqueue_scripts', array( $this, 'scripts' ), 10, 2 );
+		add_action( 'gform_pre_enqueue_scripts', array( $this, 'styles' ), 10, 2 );
 
 		// Trigger scripts being printed on Gravity Forms Preview page
 		add_filter( 'gform_preview_footer', array( $this, 'print_footer_scripts' ), 10 );
@@ -91,6 +91,7 @@ class PW_GF_HS_Search {
 	 * Enqueue script and localize variables
 	 *
 	 * @param array $form The Form Object
+	 * @param bool  $ajax Whether or not the form is ajaxified
 	 *
 	 * @return void
 	 */
@@ -118,7 +119,7 @@ class PW_GF_HS_Search {
 			'template' => array(
 				'wrap_class' => 'docs-search-wrap',
 				'before' => '<ul class="docs-search-results">',
-				'item' => '<li class="article"><a href="{url}" title="{preview}" target="_blank">{name}</a></li>',
+				'item' => '<li class="article"><a href="{url}" title="{preview|esc}&hellip;" target="_blank">{name}</a></li>',
 				'after' => '</ul>',
 				'results_found' => '<span class="{css_class}">{text}</span>',
 			),
@@ -136,21 +137,37 @@ class PW_GF_HS_Search {
 	 * Print scripts on the Gravity Forms preview page
 	 *
 	 * @since 1.2
+	 * @since 3.0.3 Check $form_id
 	 *
 	 * @return void
 	 */
-	public function print_footer_scripts() {
+	public function print_footer_scripts( $form_id = 0 ) {
+
+		$form = GFAPI::get_form( $form_id );
+
+		if( ! $form || ! $this->has_docs_field( $form ) ) {
+			return;
+		}
+
 		wp_print_scripts( 'gf-hs-search' );
 	}
 
 	/**
 	 * Print scripts on the Gravity Forms preview page
 	 *
-	 * @since 3.2
+	 * @since 3.0.2
+	 * @since 3.0.3 Added $form and $ajax params
+	 *
+	 * @param array $form Gravity Forms form "object"
+	 * @param bool  $ajax Whether or not the form is ajaxified
 	 *
 	 * @return void
 	 */
-	public function styles() {
+	public function styles( $form = array(), $ajax = false ) {
+
+		if( ! $this->has_docs_field( $form ) || did_action( 'gf_helpscout_docs_spinner_after' ) ) {
+			return;
+		}
 ?>
 		<style type="text/css">
 			.gf-hs-spinner {
@@ -167,6 +184,7 @@ class PW_GF_HS_Search {
 			}
 		</style>
 <?php
+		do_action( 'gf_helpscout_docs_spinner_after', $form );
 	}
 
 }

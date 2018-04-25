@@ -2,7 +2,12 @@
  * @globals {object} GF_HS_Settings
  */
 
-jQuery( document ).on( 'gform_post_render', function() {
+jQuery( document ).one( 'gform_post_render', function() {
+
+	if ( ! window.hasOwnProperty('GF_HS_Settings') ) {
+		console.error('There was a problem localizing Help Scout settings.');
+		return;
+	}
 
 	var HS_Search = jQuery.extend( GF_HS_Settings, {
 
@@ -192,11 +197,26 @@ jQuery( document ).on( 'gform_post_render', function() {
 
 			for ( var key in article ) {
 				if ( article.hasOwnProperty( key ) ) {
-					output = output.replace( '{' + key + '}', article[ key ] );
+					output = output.split( '{' + key + '}' ).join( article[ key ] );
+					output = output.split( '{' + key + '|esc}' ).join( HS_Search.esc_html( article[ key ] ).replace( /\s+/g, ' ' ) );
 				}
 			}
 
 			return output;
+		},
+
+		/**
+		 * Converts a number of HTML entities into their special characters.
+		 *
+		 * Specifically deals with: &, <, >, ", and '.
+		 *
+		 * Not the same thing as WordPress' esc_html() function, just named the same for familiarity.
+		 *
+		 * @param str
+		 * @returns {string}
+		 */
+		esc_html: function ( str ) {
+			return String( str ).replace( /&/g, '&amp;' ).replace( /</g, '&lt;' ).replace( />/g, '&gt;' ).replace( /"/g, '&quot;' ).replace( /'/, '&#039;' );
 		},
 
 		get_results_found: function ( count ) {
