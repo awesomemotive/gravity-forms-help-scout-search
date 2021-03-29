@@ -1,11 +1,12 @@
 === Gravity Forms - Help Scout Docs Search Field ===
-Author URI: https://pippinsplugins.com
-Plugin URI: https://pippinsplugins.com/gravity-forms-help-scout-docs-search-field
-Contributors: mordauk, katzwebservices
-Donate link: https://pippinsplugins.com/support-the-site
+Plugin URI: https://wordpress.org/plugins/gravity-forms-help-scout-search/
+Author: Sandhills Development, LLC
+Author URI: https://sandhillsdev.com
+Contributors: easydigitaldownloads, mordauk, katzwebservices
+Donate link: https://easydigitaldownloads.com/donate/
 Tags: gravity forms, help scout, helpscout, documentation
 Requires at least: 3.6
-Tested up to: 4.6
+Tested up to: 5.7
 Stable Tag: 3.0.2
 License: GNU Version 2 or Any Later Version
 
